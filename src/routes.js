@@ -5,8 +5,9 @@ import employee from "./controllers/employee.js";
 const routes = express.Router();
 
 //Rotas do funcionarios
-routes.get("/auth", employee.findAll);
-routes.post("/auth", employee.addEmployee);
+routes.get("/employee", employee.findAll);
+routes.post("/employee", employee.addEmployee);
+routes.post("/auth", auth, employee.login)
 
 //rotas dos pedidos
 routes.get("/order", order.findAll);

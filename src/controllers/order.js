@@ -1,9 +1,5 @@
 import OrderRepository from "../models/orderModel.js";
 
-// function findAll(req, res) {
-//   OrderRepository.findAll().then((result) => res.json(result));
-// }
-
 //findAll assíncrono
 async function findAll(req, res) {
   try {
@@ -14,9 +10,6 @@ async function findAll(req, res) {
   }
 }
 
-// function findOrder(req, res) {
-//   OrderRepository.findByPk(req.params.id).then((result) => res.json(result));
-// }
 //findOrder assincrono
 async function findOrder(req, res) {
   try {
@@ -31,19 +24,6 @@ async function findOrder(req, res) {
   }
 }
 
-
-// function addOrder(req, res) {
-//   OrderRepository.create({
-//     name: req.body.name,
-//     cpf: req.body.cpf,
-//     phone: req.body.phone,
-//     email: req.body.email,
-//     plan: req.body.plan,
-//     time: req.body.time,
-
-//   }).then((result) => res.json(result));
-// }
-
 //addOrder assincrono
 async function addOrder(req, res){
   try{
@@ -54,6 +34,9 @@ async function addOrder(req, res){
       email: req.body.email,
       plan: req.body.plan,
       time: req.body.time,
+      status: req.body.status,
+      code: req.body.code,
+      service:req.body.service,
     });
     res.json(result);
   } catch(error){
@@ -72,6 +55,9 @@ async function updateOrder(req, res) {
       email: req.body.email,
       plan: req.body.plan,
       time: req.body.time,
+      status: req.body.status,
+      code: req.body.code,
+      service:req.body.service,
     },
     {
       where: {
@@ -93,4 +79,4 @@ async function deleteOrder(req, res) {
   OrderRepository.findAll().then((result) => res.json(result));
 }
 
-export default { findAll, addOrder, findOrder, updateOrder, deleteOrder };
+export default { findAll, addOrder, findOrder, updateOrder, deleteOrder, };

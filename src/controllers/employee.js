@@ -1,8 +1,7 @@
 import EmployeeRepository from '../models/employeeModel.js'
+import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
 
-// function findAll(req, res) {
-//     EmployeeRepository.findAll().then((result) => res.json(result));
-// }
  //FindAll assincrono
 async function findAll(req, res) {
     try {
@@ -13,10 +12,6 @@ async function findAll(req, res) {
     }
 }
 
-
-// function findEmployee(req, res) {
-//     EmployeeRepository.findByPk(req.params.id).then((result) => res.json(result));
-// }
 //findEmployee assíncrono
 async function findEmployee(req, res) {
     try {
@@ -32,14 +27,6 @@ async function findEmployee(req, res) {
     }
   }
 
-
-// function addEmployee(req, res) {
-//     EmployeeRepository.create({
-//         password: req.body.password,
-//         accessCode: req.body.accessCode,
-//     }).then((result) => res.json(result));
-// }
-
 //addEmployee assíncrono
 async function addEmployee(req, res){
     try{
@@ -53,5 +40,30 @@ async function addEmployee(req, res){
     }
 }
 
+async function login(req, res) {
+    try {
+        const { accessCode, password } = req.body;
 
-export default { findEmployee, findAll, addEmployee }
+        const employee = await EmployeeRepository.getOne({
+            where: {accessCode: accessCode}
+        })
+
+        if (employee && (await bcrypt.compare(password, employee.password))) {
+            const token = jwt.sign(
+                {employeeId: employee.id, accessCode},
+                process.env.TOKEN_KEY, 
+                {
+                    expiresIn: "5h",
+                }
+            )
+            res.cookie("jwt", token);
+            // return res.status(200).json({ token: token })
+        }
+
+        res.status(401).json({ error: "Invalid credential" })
+    } catch (error) {
+        res.status(500).json({ error: "Employee not added" });
+    }
+}
+
+export default { findEmployee, findAll, addEmployee, login }

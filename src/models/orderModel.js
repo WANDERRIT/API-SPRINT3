@@ -14,34 +14,47 @@ export default db.define("order", {
   },
   cpf: {
     type: Sequelize.BIGINT.UNSIGNED,
-    allowNull: false,
-    unique: true,
+    allowNull: true,
+    unique: false,
   },
 
   phone: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
     unique: false,
   },
 
   email: {
     type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
+    allowNull: true,
+    unique: false,
   },
   plan: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
     unique: false,
   },
+  //preferencia de horário
   time: {
-    type: Sequelize.DATE,
-    allowNull: false,
+    type: Sequelize.STRING,
+    allowNull: true,
     unique: false,
   },
   status:{
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
     unique: false,
-  }
+  },
+  code:{
+    type: Sequelize.STRING,
+    allowNull: true,
+    unique: false,
+  },
+
+//data da contratação
+  service:{
+    type: Sequelize.STRING,
+    allowNull: true,
+    unique: false,
+  },
 });

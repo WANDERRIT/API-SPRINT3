@@ -10,7 +10,7 @@ export default db.define("employee", {
   },
   
   accessCode: {
-    type: Sequelize.INTEGER.UNSIGNED,
+    type: Sequelize.STRING,
     allowNull: false,
     unique: true,
   },
