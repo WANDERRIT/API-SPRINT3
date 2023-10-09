@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export default function verifyToken(res,req, next){
+export default function verifyToken(req,res, next){
     const token = req.body.token || req.query.token || req.headers["x-access-token"];
     if(!token){
         return res.status(403)
@@ -14,5 +14,5 @@ export default function verifyToken(res,req, next){
         console.error(error)
         res.status(401).json({ error: "Token inválido" });
     }
-return next();
+return next();// Chama o próximo middleware ou rota após a autenticação bem-sucedida.
 }

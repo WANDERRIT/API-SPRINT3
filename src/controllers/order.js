@@ -19,7 +19,7 @@ async function findOrder(req, res) {
     }
     res.json(result);
   } catch(error){
-    console.error('Erro ao buscar funcionário:', error);
+    console.error('Error when searching for employee:', error);
     res.status(500).json({ error: "An error occurred while searching for an employee" });
   }
 }
@@ -37,6 +37,8 @@ async function addOrder(req, res){
       status: req.body.status,
       code: req.body.code,
       service:req.body.service,
+      adress: req.body.adress,
+      street:req.body.street
     });
     res.json(result);
   } catch(error){
@@ -58,6 +60,8 @@ async function updateOrder(req, res) {
       status: req.body.status,
       code: req.body.code,
       service:req.body.service,
+      adress: req.body.adress,
+      street:req.body.street
     },
     {
       where: {

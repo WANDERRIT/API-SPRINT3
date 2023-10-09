@@ -13,7 +13,7 @@ app.use('/api',routes);
 
 
 
-db.sync({alter: false});
+db.sync({alter:false });
 console.log(`Banco de dados conectado: ${process.env.DB_NAME}`)
 
 // app.listen(3000, () => console.log("Servidor iniciado na porta 3000"));

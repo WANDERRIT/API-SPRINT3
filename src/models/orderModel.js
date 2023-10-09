@@ -13,7 +13,7 @@ export default db.define("order", {
     allowNull: false,
   },
   cpf: {
-    type: Sequelize.BIGINT.UNSIGNED,
+    type: Sequelize.STRING,
     allowNull: true,
     unique: false,
   },
@@ -44,6 +44,7 @@ export default db.define("order", {
     type: Sequelize.STRING,
     allowNull: true,
     unique: false,
+    defaultValue: "Em andamento",
   },
   code:{
     type: Sequelize.STRING,
@@ -57,4 +58,13 @@ export default db.define("order", {
     allowNull: true,
     unique: false,
   },
+
+  adress:{
+    type:Sequelize.STRING,
+    allowNull:true,
+  },
+  street:{
+    type:Sequelize.STRING,
+    allowNull:true,
+  }
 });
