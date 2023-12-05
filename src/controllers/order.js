@@ -27,6 +27,7 @@ async function findOrder(req, res) {
 //addOrder assincrono
 async function addOrder(req, res){
   try{
+    
     const result = await OrderRepository.create({
       name: req.body.name,
       cpf: req.body.cpf,
@@ -40,6 +41,7 @@ async function addOrder(req, res){
       adress: req.body.adress,
       street:req.body.street
     });
+    
     res.json(result);
   } catch(error){
     console.error('An error occurred while adding an order', error);
